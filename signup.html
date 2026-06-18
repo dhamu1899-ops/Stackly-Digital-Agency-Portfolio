@@ -81,9 +81,8 @@
     sessionStorage.setItem('stacklyLoginEmail', profile.email);
     sessionStorage.setItem('stacklyLoginRole', profile.role);
     sessionStorage.setItem('stacklyLoginName', profile.name);
-    const target = role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
-    const q = new URLSearchParams({ email: profile.email, role: profile.role, t: String(Date.now()) }).toString();
-    location.href = target + '?' + q;
+    if (typeof showToast === 'function') { showToast('✓ Account created successfully!'); }
+    setTimeout(function(){ location.href = 'index.html'; }, 2000);
   }, true);
 })();
 </script>

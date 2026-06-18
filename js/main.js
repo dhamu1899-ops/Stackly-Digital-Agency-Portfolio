@@ -9,13 +9,17 @@ const toast = document.querySelector(".toast-message");
 
 const showToast = (message) => {
   if (!toast) return;
+  const isSuccess = /success|successfully|created/i.test(message);
   toast.textContent = message;
+  toast.classList.toggle("success", isSuccess);
   toast.classList.add("show");
   window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2400);
+  showToast.timer = window.setTimeout(() => {
+    toast.classList.remove("show", "success");
+  }, 2400);
 };
 
-// Signup page: validate all fields, show success message, then return to Home.
+// Signup page: validate all fields, show field errors below inputs, show green success at the top, then return to Home.
 window.addEventListener("submit", (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.closest(".auth-page") || !window.location.pathname.toLowerCase().includes("signup")) return;
@@ -23,6 +27,21 @@ window.addEventListener("submit", (event) => {
   event.preventDefault();
   event.stopPropagation();
   event.stopImmediatePropagation();
+
+  const setFieldError = (input, message) => {
+    const wrap = input?.closest(".field-wrap");
+    const error = wrap?.querySelector(".field-error");
+    if (wrap) wrap.classList.toggle("invalid", Boolean(message));
+    if (error) error.textContent = message || "";
+  };
+
+  form.querySelectorAll(".field-wrap").forEach((wrap) => {
+    wrap.classList.remove("invalid");
+    const error = wrap.querySelector(".field-error");
+    if (error) error.textContent = "";
+  });
+  const oldTermsError = form.querySelector(".terms-error");
+  if (oldTermsError) oldTermsError.remove();
 
   const nameInput = form.querySelector('input[name="name"]');
   const emailInput = form.querySelector('input[type="email"]');
@@ -37,17 +56,29 @@ window.addEventListener("submit", (event) => {
 
   if (emailInput) emailInput.value = email;
 
-  if (!name) { showToast?.("Name is required."); nameInput?.focus(); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast?.("Please enter a correct email address."); emailInput?.focus(); return; }
-  if (!password) { showToast?.("Password is required."); passwordInput?.focus(); return; }
-  if (!confirmPassword) { showToast?.("Confirm password is required."); confirmInput?.focus(); return; }
-  if (password !== confirmPassword) { showToast?.("Password and confirm password must match."); confirmInput?.focus(); return; }
-  if (terms && !terms.checked) { showToast?.("Please agree to the terms and conditions."); terms.focus(); return; }
+  let valid = true;
+  if (!name) { setFieldError(nameInput, "Name is required."); valid = false; }
+  if (!email) { setFieldError(emailInput, "Email is required."); valid = false; }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setFieldError(emailInput, "Please enter a correct email address."); valid = false; }
+  if (!password) { setFieldError(passwordInput, "Password is required."); valid = false; }
+  if (!confirmPassword) { setFieldError(confirmInput, "Confirm password is required."); valid = false; }
+  else if (password && password !== confirmPassword) { setFieldError(confirmInput, "Password and confirm password must match."); valid = false; }
+  if (terms && !terms.checked) {
+    const row = terms.closest(".auth-row");
+    if (row) row.insertAdjacentHTML("afterend", '<small class="terms-error">Please agree to the terms and conditions.</small>');
+    valid = false;
+  }
+
+  if (!valid) {
+    const firstInvalid = form.querySelector(".field-wrap.invalid input") || (!terms?.checked ? terms : null);
+    firstInvalid?.focus();
+    return;
+  }
 
   const role = form.querySelector(".role-btn.active")?.textContent.trim().toLowerCase() || "user";
   localStorage.setItem("stacklySignupUser", JSON.stringify({ name, email, role, signedUpAt: Date.now() }));
 
-  showToast?.("Account created successfully!");
+  showToast?.("✓ Account created successfully!");
   window.setTimeout(() => { window.location.href = "index.html"; }, 2000);
 }, true);
 
@@ -171,18 +202,47 @@ window.addEventListener("submit", (event) => {
     const email = String(emailInput?.value || '').trim().toLowerCase();
     if (emailInput) emailInput.value = email;
 
+    const clearSigninErrors = () => {
+      form.querySelectorAll('.field-wrap').forEach((wrap) => {
+        wrap.classList.remove('invalid');
+        const error = wrap.querySelector('.field-error');
+        if (error) error.textContent = '';
+      });
+      form.querySelector('.terms-error')?.remove();
+    };
+    const setSigninFieldError = (input, message) => {
+      const wrap = input?.closest('.field-wrap');
+      const error = wrap?.querySelector('.field-error');
+      if (wrap) wrap.classList.toggle('invalid', Boolean(message));
+      if (error) error.textContent = message || '';
+    };
+    const setSigninTermsError = (message) => {
+      const row = terms?.closest('.auth-row');
+      if (row && !form.querySelector('.terms-error')) {
+        row.insertAdjacentHTML('afterend', '<small class="terms-error"></small>');
+      }
+      const error = form.querySelector('.terms-error');
+      if (error) error.textContent = message || '';
+    };
+    clearSigninErrors();
+
+    if (!email) {
+      setSigninFieldError(emailInput, 'Email is required.');
+      emailInput?.focus();
+      return;
+    }
     if (!emailRegex.test(email)) {
-      if (typeof showToast === 'function') showToast('Please enter a correct email address.');
+      setSigninFieldError(emailInput, 'Please enter a correct email address.');
       emailInput?.focus();
       return;
     }
     if (passwordInput && !passwordInput.value.trim()) {
-      if (typeof showToast === 'function') showToast('Password is required.');
+      setSigninFieldError(passwordInput, 'Password is required.');
       passwordInput.focus();
       return;
     }
     if (terms && !terms.checked) {
-      if (typeof showToast === 'function') showToast('Please agree to the terms and conditions.');
+      setSigninTermsError('Please agree to the terms and conditions.');
       terms.focus();
       return;
     }
@@ -661,7 +721,7 @@ document.querySelectorAll(".role-select").forEach((group) => {
 
   document.addEventListener("submit", (event) => {
     const form = event.target;
-    if (!(form instanceof HTMLFormElement) || !form.closest(".auth-page")) return;
+    if (!(form instanceof HTMLFormElement) || !form.closest(".auth-page") || window.location.pathname.toLowerCase().includes("signup")) return;
 
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -671,13 +731,29 @@ document.querySelectorAll(".role-select").forEach((group) => {
     const email = (emailInput?.value || "").trim().toLowerCase();
     if (emailInput) emailInput.value = email;
 
+    form.querySelectorAll('.field-wrap').forEach((wrap) => {
+      wrap.classList.remove('invalid');
+      const error = wrap.querySelector('.field-error');
+      if (error) error.textContent = '';
+    });
+    const setError = (input, message) => {
+      const wrap = input?.closest('.field-wrap');
+      const error = wrap?.querySelector('.field-error');
+      if (wrap) wrap.classList.toggle('invalid', Boolean(message));
+      if (error) error.textContent = message || '';
+    };
+    if (!email) {
+      setError(emailInput, "Email is required.");
+      emailInput?.focus();
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showToast?.("Please enter a correct email address.");
+      setError(emailInput, "Please enter a correct email address.");
       emailInput?.focus();
       return;
     }
     if (passwordInput && !passwordInput.value.trim()) {
-      showToast?.("Password is required.");
+      setError(passwordInput, "Password is required.");
       passwordInput.focus();
       return;
     }
@@ -854,11 +930,37 @@ document.querySelectorAll(".role-select").forEach((group) => {
     const emailInput = form.querySelector('input[type="email"]');
     const passwordInput = form.querySelector('input[type="password"], input[type="text"][name*="password" i]');
     const terms = form.querySelector('.terms-inline input[type="checkbox"]');
+
+    const clearAuthFieldErrors = () => {
+      form.querySelectorAll('.field-wrap').forEach((wrap) => {
+        wrap.classList.remove('invalid');
+        const error = wrap.querySelector('.field-error');
+        if (error) error.textContent = '';
+      });
+      form.querySelector('.terms-error')?.remove();
+    };
+    const setAuthFieldError = (input, message) => {
+      const wrap = input?.closest('.field-wrap');
+      const error = wrap?.querySelector('.field-error');
+      if (wrap) wrap.classList.toggle('invalid', Boolean(message));
+      if (error) error.textContent = message || '';
+    };
+    const setAuthTermsError = (message) => {
+      const row = terms?.closest('.auth-row');
+      if (row && !form.querySelector('.terms-error')) {
+        row.insertAdjacentHTML('afterend', '<small class="terms-error"></small>');
+      }
+      const error = form.querySelector('.terms-error');
+      if (error) error.textContent = message || '';
+    };
+
+    clearAuthFieldErrors();
     const email = String(emailInput?.value || '').trim().toLowerCase().replace(/\s+/g, '');
     if (emailInput) emailInput.value = email;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast?.('Please enter a correct email address.'); emailInput?.focus(); return; }
-    if (passwordInput && !passwordInput.value.trim()) { showToast?.('Password is required.'); passwordInput.focus(); return; }
-    if (terms && !terms.checked) { showToast?.('Please agree to the terms and conditions.'); terms.focus(); return; }
+    if (!email) { setAuthFieldError(emailInput, 'Email is required.'); emailInput?.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setAuthFieldError(emailInput, 'Please enter a correct email address.'); emailInput?.focus(); return; }
+    if (passwordInput && !passwordInput.value.trim()) { setAuthFieldError(passwordInput, 'Password is required.'); passwordInput.focus(); return; }
+    if (terms && !terms.checked) { setAuthTermsError('Please agree to the terms and conditions.'); terms.focus(); return; }
 
     const role = cleanRole(form.querySelector('.role-btn.active')?.textContent || localStorage.getItem(LIVE_ROLE_KEY) || 'user');
     const profile = saveProfile(email, role);

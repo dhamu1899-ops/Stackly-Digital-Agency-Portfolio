@@ -63,11 +63,38 @@
     const emailInput = form.querySelector('input[type="email"]');
     const passInput = form.querySelector('input[type="password"], input[type="text"][name*="password" i]');
     const terms = form.querySelector('.terms-inline input[type="checkbox"]');
+
+    function setFieldError(input, message){
+      const wrap = input && input.closest('.field-wrap');
+      const error = wrap && wrap.querySelector('.field-error');
+      if(wrap) wrap.classList.toggle('invalid', Boolean(message));
+      if(error) error.textContent = message || '';
+    }
+    function clearErrors(){
+      form.querySelectorAll('.field-wrap').forEach(function(wrap){
+        wrap.classList.remove('invalid');
+        const error = wrap.querySelector('.field-error');
+        if(error) error.textContent = '';
+      });
+      const oldTermsError = form.querySelector('.terms-error');
+      if(oldTermsError) oldTermsError.remove();
+    }
+    function setTermsError(message){
+      const row = terms && terms.closest('.auth-row');
+      if(row && !form.querySelector('.terms-error')){
+        row.insertAdjacentHTML('afterend', '<small class="terms-error"></small>');
+      }
+      const error = form.querySelector('.terms-error');
+      if(error) error.textContent = message || '';
+    }
+
+    clearErrors();
     const email = cleanEmail(emailInput && emailInput.value);
     if(emailInput) emailInput.value = email;
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a correct email address.'); emailInput && emailInput.focus(); return; }
-    if(passInput && !passInput.value.trim()){ alert('Password is required.'); passInput.focus(); return; }
-    if(terms && !terms.checked){ alert('Please agree to the terms and conditions.'); terms.focus(); return; }
+    if(!email){ setFieldError(emailInput, 'Email is required.'); emailInput && emailInput.focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setFieldError(emailInput, 'Please enter a correct email address.'); emailInput && emailInput.focus(); return; }
+    if(passInput && !passInput.value.trim()){ setFieldError(passInput, 'Password is required.'); passInput.focus(); return; }
+    if(terms && !terms.checked){ setTermsError('Please agree to the terms and conditions.'); terms.focus(); return; }
     const activeRole = form.querySelector('.role-btn.active');
     const role = cleanRole(activeRole ? activeRole.textContent : 'user');
     const profile = { email: email, name: makeName(email), role: role, label: role === 'admin' ? 'Login Admin' : 'Login User', loggedInAt: Date.now() };

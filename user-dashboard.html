@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Dashboard - Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="admin-dashboard-body user-dashboard-body">
+  <div class="admin-app admin-v2 user-app">
+    <aside class="admin-sidebar">
+      <a class="admin-logo" href="index.html"><img src="assets/stackly-logo.svg" alt="">Stackly</a>
+      <nav class="admin-nav user-nav" aria-label="User navigation">
+        <a class="active" href="#dashboard" data-user-tab="dashboard"><span class="admin-icon">⌂</span>Dashboard</a>
+        <a href="#projects" data-user-tab="projects"><span class="admin-icon">▣</span>My Projects</a>
+        <a href="#invoices" data-user-tab="invoices"><span class="admin-icon">▤</span>Invoices</a>
+        <a href="#payments" data-user-tab="payments"><span class="admin-icon">▭</span>Payments</a>
+        <a href="#messages" data-user-tab="messages"><span class="admin-icon">✉</span>Messages <span class="admin-badge">5</span></a>
+        <a href="#notifications" data-user-tab="notifications"><span class="admin-icon">♧</span>Notifications <span class="admin-badge">3</span></a>
+        <a href="#profile" data-user-tab="profile"><span class="admin-icon">♙</span>Profile</a>
+        <a href="#settings" data-user-tab="settings"><span class="admin-icon">⚙</span>Settings</a>
+      </nav>
+      <div class="upgrade-card">
+        <div class="upgrade-icon">◇</div>
+        <h3>Upgrade to Pro</h3>
+        <p>Get exclusive features and priority support.</p>
+        <button>Upgrade Now</button>
+      </div>
+      <div class="admin-sidebar-bottom">
+        <button class="admin-logout" data-user-tab="logout"><span class="admin-icon">⇥</span> Logout</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="dashboard-mobile-head" aria-label="Mobile dashboard header">
+        <a class="dashboard-mobile-brand" href="index.html"><img src="assets/stackly-logo.svg" alt=""> <span>Stackly</span></a>
+      </div>
+
+      <div class="admin-topbar">
+        <label class="admin-search"><input placeholder="Search anything..."><span>⌕</span></label>
+        <div class="admin-top-actions">
+          <span class="admin-action-icon">☼</span>
+          <span class="admin-action-icon">♧<b class="admin-dot">3</b></span>
+          <span class="admin-action-icon">✉<b class="admin-dot">5</b></span>
+          <div class="admin-profile">
+            <img class="admin-avatar" src="assets/team-david.png" alt="">
+            <div><strong>Dhamu</strong><span>Login User</span><small>dhamu@gmail.com</small></div>
+            <span>⌄</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="admin-page active" id="dashboard">
+        <div class="admin-title-row">
+          <div><h1>Welcome back, Dhamu! 👋</h1><p>Here’s what’s happening with your projects.</p></div>
+          <button class="admin-select">▣ &nbsp; May 01 - May 31, 2025⌄</button>
+        </div>
+        <div class="admin-kpis">
+          <article class="admin-kpi"><div class="admin-kpi-top"><b class="admin-kpi-icon">▣</b><div><span>Total Projects</span><strong>08</strong></div></div><p class="admin-trend">↑ 14.3% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 35"><path d="M0 25 C30 29 35 12 58 18 S89 31 110 17 139 29 160 13 184 25 205 10 230 21 260 8" fill="none" stroke="#ff2732" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><b class="admin-kpi-icon">▤</b><div><span>Completed Projects</span><strong>05</strong></div></div><p class="admin-trend">↑ 25.0% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 35"><path d="M0 22 C25 20 34 28 58 12 S92 26 110 12 145 21 158 9 190 25 208 8 235 18 260 5" fill="none" stroke="#ff2732" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><b class="admin-kpi-icon">$</b><div><span>Total Spent</span><strong>$12,450</strong></div></div><p class="admin-trend">↑ 8.6% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 35"><path d="M0 25 C35 27 38 11 62 19 S88 10 110 18 143 5 164 20 190 4 210 13 236 8 260 2" fill="none" stroke="#ff2732" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><b class="admin-kpi-icon">▰</b><div><span>Outstanding</span><strong>$2,350</strong></div></div><p class="admin-trend">↓ 5.2% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 35"><path d="M0 20 C26 14 42 29 66 15 S91 22 112 12 143 29 160 20 190 8 211 18 238 10 260 12" fill="none" stroke="#ff2732" stroke-width="3"/></svg></div></article>
+        </div>
+
+        <div class="user-dashboard-grid">
+          <section class="admin-panel">
+            <div class="admin-panel-head"><h3>Project Progress</h3><button class="admin-select">This Month⌄</button></div>
+            <div class="donut-wrap user-donut"><div class="donut user-progress"></div><div class="status-list"><div><span><i class="legend-dot green"></i>Completed</span><b>5 (62.5%)</b></div><div><span><i class="legend-dot red"></i>In Progress</span><b>2 (25%)</b></div><div><span><i class="legend-dot yellow"></i>On Hold</span><b>1 (12.5%)</b></div><div><span><i class="legend-dot gray"></i>Not Started</span><b>0 (0%)</b></div></div></div>
+          </section>
+          <section class="admin-panel">
+            <div class="admin-panel-head"><h3>Recent Projects</h3><a class="admin-view" href="#projects" data-user-tab="projects">View All</a></div>
+            <div class="list-table project-progress-list">
+              <div><span>◎ E-commerce Website<br><small>Due: May 28, 2025</small></span><b class="tag redtag">In Progress</b><i><em style="width:75%"></em></i><strong>75%</strong></div>
+              <div><span>▯ Mobile App Design<br><small>Due: May 26, 2025</small></span><b class="tag greentag">Completed</b><i><em style="width:100%"></em></i><strong>100%</strong></div>
+              <div><span>◫ SEO Campaign<br><small>Due: May 24, 2025</small></span><b class="tag redtag">In Progress</b><i><em style="width:60%"></em></i><strong>60%</strong></div>
+              <div><span>✎ Brand Identity Design<br><small>Due: May 20, 2025</small></span><b class="tag yellowtag">On Hold</b><i><em style="width:40%"></em></i><strong>40%</strong></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="admin-bottom-grid user-bottom-grid">
+          <section class="admin-panel"><div class="admin-panel-head"><h3>Invoice Overview</h3><a class="admin-view" data-user-tab="invoices" href="#invoices">View All</a></div><div class="invoice-summary"><b class="admin-kpi-icon">$</b><span>Total Invoices</span><strong>$14,800</strong></div><div class="invoice-split"><p><b class="success">$10,250</b><span>Paid</span></p><p><b class="warning">$2,350</b><span>Pending</span></p><p><b class="danger">$2,200</b><span>Overdue</span></p></div></section>
+          <section class="admin-panel"><div class="admin-panel-head"><h3>Payment History</h3><a class="admin-view" data-user-tab="payments" href="#payments">View All</a></div><div class="list-table"><div><span>✓ Invoice #INV-1687</span><small>Apr 28, 2025</small><b class="success">$2,450</b></div><div><span>✓ Invoice #INV-1686</span><small>Apr 20, 2025</small><b class="success">$1,850</b></div><div><span>✓ Invoice #INV-1685</span><small>Apr 15, 2025</small><b class="success">$2,320</b></div><div><span>✓ Invoice #INV-1684</span><small>Apr 08, 2025</small><b class="success">$1,280</b></div></div></section>
+          <section class="admin-panel"><div class="admin-panel-head"><h3>Recent Messages</h3><a class="admin-view" data-user-tab="messages" href="#messages">View All</a></div><div class="admin-message-list compact"><article><img src="assets/team-sarah.png"><div><h3>Sarah Kim</h3><p>Project update and next steps discussion</p></div><small>10 min ago</small></article><article><img src="assets/team-alex.png"><div><h3>Alex Rivera</h3><p>Invoice #INV-1687 has been sent</p></div><small>25 min ago</small></article><article><img src="assets/team-maya.png"><div><h3>Maya Patel</h3><p>Final design files attached</p></div><small>1 hour ago</small></article></div></section>
+        </div>
+        <div class="help-strip"><span class="admin-kpi-icon">☊</span><div><b>Need Help?</b><p>Our support team is here to assist you.</p></div><button class="admin-select">Contact Support</button></div>
+      </section>
+
+      <section class="admin-page" id="projects">
+        <div class="admin-title-row"><div><h1>My Projects</h1><p>Manage and track all your projects.</p></div><button class="primary-dash-btn">+ New Project</button></div>
+        <div class="dash-filters"><button class="active">All Projects (8)</button><button>In Progress (2)</button><button>Completed (5)</button><button>On Hold (1)</button><button>Cancelled (0)</button></div>
+        <div class="admin-data-grid full-grid"><section class="admin-panel big-table"><input class="dash-input" placeholder="⌕ Search projects..."><table><thead><tr><th>Project Name</th><th>Category</th><th>Status</th><th>Due Date</th><th>Progress</th><th>Budget</th><th>Actions</th></tr></thead><tbody>
+          <tr data-user-tab="project-detail"><td>E-commerce Website</td><td>Web Development</td><td><span class="tag redtag">In Progress</span></td><td>May 28, 2025</td><td><span class="mini-line"><i style="width:75%"></i></span>75%</td><td>$4,250</td><td>•••</td></tr>
+          <tr><td>Mobile App Design</td><td>UI/UX Design</td><td><span class="tag greentag">Completed</span></td><td>May 26, 2025</td><td><span class="mini-line"><i style="width:100%"></i></span>100%</td><td>$3,500</td><td>•••</td></tr>
+          <tr><td>SEO Campaign</td><td>Digital Marketing</td><td><span class="tag redtag">In Progress</span></td><td>May 24, 2025</td><td><span class="mini-line"><i style="width:60%"></i></span>60%</td><td>$2,150</td><td>•••</td></tr>
+          <tr><td>Brand Identity Design</td><td>Branding</td><td><span class="tag yellowtag">On Hold</span></td><td>May 20, 2025</td><td><span class="mini-line"><i style="width:40%"></i></span>40%</td><td>$1,800</td><td>•••</td></tr>
+          <tr><td>Landing Page Redesign</td><td>Web Development</td><td><span class="tag greentag">Completed</span></td><td>May 18, 2025</td><td><span class="mini-line"><i style="width:100%"></i></span>100%</td><td>$1,250</td><td>•••</td></tr>
+          <tr><td>Social Media Marketing</td><td>Digital Marketing</td><td><span class="tag greentag">Completed</span></td><td>May 15, 2025</td><td><span class="mini-line"><i style="width:100%"></i></span>100%</td><td>$1,500</td><td>•••</td></tr>
+        </tbody></table></section></div>
+      </section>
+
+      <section class="admin-page" id="invoices">
+        <div class="admin-title-row"><div><h1>Invoices</h1><p>View and manage your invoices.</p></div></div>
+        <div class="admin-kpis compact-kpis"><article class="admin-kpi"><span>Total Invoices</span><strong>14</strong><p class="admin-trend">↑ 8.1%</p></article><article class="admin-kpi"><span>Paid Invoices</span><strong>10</strong><p class="admin-trend success">↑ 18.2%</p></article><article class="admin-kpi"><span>Pending Invoices</span><strong>3</strong><p class="admin-trend">↓ 5.1%</p></article><article class="admin-kpi"><span>Overdue Invoices</span><strong>1</strong><p class="admin-trend">↓ 2.2%</p></article></div>
+        <section class="admin-panel big-table"><input class="dash-input" placeholder="⌕ Search invoices..."><table><thead><tr><th>Invoice ID</th><th>Project</th><th>Date</th><th>Amount</th><th>Status</th><th>Due Date</th><th>Actions</th></tr></thead><tbody><tr data-user-tab="invoice-detail"><td>INV-1687</td><td>E-commerce Website</td><td>Apr 28, 2025</td><td>$2,450</td><td><span class="tag greentag">Paid</span></td><td>Apr 30, 2025</td><td>⇩</td></tr><tr><td>INV-1686</td><td>Mobile App Design</td><td>Apr 20, 2025</td><td>$1,850</td><td><span class="tag greentag">Paid</span></td><td>Apr 20, 2025</td><td>⇩</td></tr><tr><td>INV-1685</td><td>SEO Campaign</td><td>Apr 15, 2025</td><td>$2,320</td><td><span class="tag greentag">Paid</span></td><td>Apr 15, 2025</td><td>⇩</td></tr><tr><td>INV-1684</td><td>Brand Identity Design</td><td>Apr 08, 2025</td><td>$1,280</td><td><span class="tag yellowtag">Pending</span></td><td>Apr 10, 2025</td><td>⇩</td></tr><tr><td>INV-1683</td><td>Landing Page Design</td><td>Apr 01, 2025</td><td>$1,450</td><td><span class="tag redtag">Overdue</span></td><td>Apr 11, 2025</td><td>⇩</td></tr></tbody></table></section>
+      </section>
+
+      <section class="admin-page" id="payments">
+        <div class="admin-title-row"><div><h1>Payments</h1><p>Track all payments and transactions.</p></div></div>
+        <div class="admin-kpis compact-kpis"><article class="admin-kpi"><span>Total Payments</span><strong>$14,800</strong><p class="admin-trend">↑ 14.3%</p></article><article class="admin-kpi"><span>Successful</span><strong>$10,250</strong><p class="admin-trend success">↑ 20.6%</p></article><article class="admin-kpi"><span>Pending</span><strong>$2,350</strong><p class="admin-trend">↓ 3.2%</p></article><article class="admin-kpi"><span>Failed</span><strong>$2,200</strong><p class="admin-trend">↓ 8.6%</p></article></div>
+        <section class="admin-panel big-table"><input class="dash-input" placeholder="⌕ Search payments..."><table><thead><tr><th>Payment ID</th><th>Invoice ID</th><th>Method</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody><tr data-user-tab="payment-detail"><td>PAY-2587</td><td>INV-1687</td><td>Credit Card</td><td>Apr 28, 2025</td><td>$2,450</td><td><span class="tag greentag">Successful</span></td></tr><tr><td>PAY-2586</td><td>INV-1686</td><td>PayPal</td><td>Apr 20, 2025</td><td>$1,850</td><td><span class="tag greentag">Successful</span></td></tr><tr><td>PAY-2585</td><td>INV-1685</td><td>Bank Transfer</td><td>Apr 15, 2025</td><td>$2,320</td><td><span class="tag greentag">Successful</span></td></tr><tr><td>PAY-2584</td><td>INV-1684</td><td>Credit Card</td><td>Apr 08, 2025</td><td>$1,280</td><td><span class="tag yellowtag">Pending</span></td></tr></tbody></table></section>
+      </section>
+
+      <section class="admin-page" id="messages">
+        <div class="admin-title-row"><div><h1>Messages</h1><p>Communicate with your team and support.</p></div></div>
+        <div class="messages-layout"><section class="admin-panel admin-message-list"><article class="active"><img src="assets/team-sarah.png"><div><h3>Sarah Kim</h3><p>Project update and next steps</p></div><small>10:36 AM</small></article><article><img src="assets/team-alex.png"><div><h3>Alex Rivera</h3><p>Invoice #INV-1687 has been sent</p></div><small>09:15 AM</small></article><article><img src="assets/team-maya.png"><div><h3>Maya Patel</h3><p>Final design files attached</p></div><small>Yesterday</small></article><a class="admin-view">View All Messages</a></section><section class="admin-panel chat-panel"><div class="chat-head"><img src="assets/team-sarah.png"><div><b>Sarah Kim</b><span>Online</span></div><i>☎ ◫ ⋮</i></div><div class="chat-body"><p class="bubble left">Hi David, I wanted to check on the progress of the e-commerce website.</p><p class="bubble right">Hi Sarah! Yes, we are on track. The development is 75% complete.</p><p class="bubble left">Great! When can I expect the next update?</p><p class="bubble right">You'll get the full demo by this Friday.</p></div><label class="chat-input"><input placeholder="Type your message..."><button>➤</button></label></section></div>
+      </section>
+
+      <section class="admin-page" id="notifications">
+        <div class="admin-title-row"><div><h1>Notifications</h1><p>Stay updated with your latest activity.</p></div><a class="admin-view">Mark all as read</a></div>
+        <section class="admin-panel notification-list"><article><span class="circle-icon">▣</span><div><h3>Project Update</h3><p>E-commerce Website progress updated to 75%</p></div><small>10 min ago</small></article><article><span class="circle-icon yellow">▤</span><div><h3>Payment Received</h3><p>Payment of $3,450 for invoice #INV-1687 received</p></div><small>25 min ago</small></article><article><span class="circle-icon">✉</span><div><h3>New Message</h3><p>You have a new message from Sarah Kim</p></div><small>1 hour ago</small></article><article><span class="circle-icon">✓</span><div><h3>Invoice Sent</h3><p>Invoice #INV-1686 has been sent successfully</p></div><small>2 hours ago</small></article><article><span class="circle-icon">↗</span><div><h3>Project Completed</h3><p>Mobile App Design project has been completed</p></div><small>1 day ago</small></article></section>
+      </section>
+
+      <section class="admin-page" id="profile">
+        <div class="admin-title-row"><div><h1>Profile</h1><p>Manage your personal information.</p></div></div>
+        <div class="profile-layout"><section class="admin-panel profile-card"><img src="assets/team-david.png"><h3>Dhamu</h3><p>Login User</p><small>Member since Jan 15, 2025</small><button class="admin-select">Edit Profile</button></section><section class="admin-panel profile-form"><label>Full Name<input value="Dhamu"></label><label>Email Address<input value="dhamu@gmail.com"></label><label>Phone Number<input value="+1 (555) 123-4567"></label><label>Location<input value="New York, USA"></label><label>Bio<textarea>Passionate about creating digital experiences.</textarea></label><button class="primary-dash-btn">Save Changes</button></section></div>
+      </section>
+
+      <section class="admin-page" id="settings">
+        <div class="admin-title-row"><div><h1>Settings</h1><p>Manage your account and preferences.</p></div></div>
+        <div class="settings-layout"><aside class="settings-tabs"><button class="active">General</button><button>Security</button><button>Notifications</button><button>Billing</button><button>Connected Accounts</button></aside><section class="admin-panel settings-form"><h3>General Settings</h3><div class="settings-grid"><label>Language<select><option>English</option></select></label><label>Timezone<select><option>(GMT-05:00) New York</option></select></label><label>Date Format<select><option>MM/DD/YYYY</option></select></label><label>Currency<select><option>USD - US Dollar</option></select></label></div><p>Theme</p><div class="theme-toggle"><button>Light</button><button class="active">Dark</button><button>System</button></div><button class="primary-dash-btn">Save Changes</button></section></div>
+      </section>
+
+      <section class="admin-page" id="project-detail">
+        <div class="admin-title-row"><div><a class="admin-view" data-user-tab="projects" href="#projects">‹ Back to Projects</a><h1>E-commerce Website</h1></div><span class="tag redtag">In Progress</span></div>
+        <section class="admin-panel"><div class="detail-tabs"><button class="active">Overview</button><button>Tasks</button><button>Files</button><button>Team</button><button>Invoices</button><button>Activity</button></div><div class="project-detail-grid"><div><h3>Project Description</h3><p>Building a modern and responsive e-commerce website with advanced features and seamless user experience.</p><div class="detail-list"><p><b>Category</b><span>Web Development</span></p><p><b>Start Date</b><span>Apr 01, 2025</span></p><p><b>Due Date</b><span>May 28, 2025</span></p><p><b>Budget</b><span>$4,250</span></p><p><b>Progress</b><span class="mini-line"><i style="width:75%"></i></span></p></div></div><aside class="admin-panel"><h3>Team Members</h3><article class="mini-member"><img src="assets/team-david.png"><span>Dhamu<br><small>Project Manager</small></span></article><article class="mini-member"><img src="assets/team-sarah.png"><span>Sarah Kim<br><small>UI/UX Designer</small></span></article><article class="mini-member"><img src="assets/team-alex.png"><span>Alex Rivera<br><small>Developer</small></span></article><h3>Technologies</h3><p><span class="tag">React</span> <span class="tag">Node.js</span> <span class="tag">MongoDB</span> <span class="tag">Tailwind CSS</span></p></aside></div></section>
+      </section>
+
+      <section class="admin-page" id="invoice-detail">
+        <div class="admin-title-row"><div><a class="admin-view" data-user-tab="invoices" href="#invoices">‹ Back to Invoices</a><h1>Invoice #INV-1687</h1></div><div><button class="admin-select">⇩ Download</button> <button class="admin-select">⌘ Print</button></div></div>
+        <section class="admin-panel big-table"><div class="invoice-detail-head"><div><b>Invoice ID</b><h3>INV-1687</h3><span class="tag greentag">Paid</span><p>Project: E-commerce Website<br>Issue Date: Apr 28, 2025<br>Due Date: Apr 29, 2025</p></div><div><p>Subtotal <b>$3,000.00</b></p><p>Tax (15%) <b>$450.00</b></p><p>Total Amount <b>$3,450.00</b></p><p>Amount Paid <b class="success">$3,450.00</b></p></div></div><table><thead><tr><th>Item Description</th><th>Hours</th><th>Rate</th><th>Amount</th></tr></thead><tbody><tr><td>UI/UX Design</td><td>20</td><td>$75.00</td><td>$1,500.00</td></tr><tr><td>Frontend Development</td><td>25</td><td>$75.00</td><td>$1,875.00</td></tr><tr><td>Testing & QA</td><td>6</td><td>$75.00</td><td>$450.00</td></tr></tbody></table></section>
+      </section>
+
+      <section class="admin-page" id="payment-detail">
+        <div class="admin-title-row"><div><a class="admin-view" data-user-tab="payments" href="#payments">‹ Back to Payments</a><h1>Payment #PAY-2587</h1></div><div><button class="admin-select">⇩ Download</button> <button class="admin-select">⌘ Print</button></div></div>
+        <section class="admin-panel payment-detail"><div><p>Payment ID <b>PAY-2587</b> <span class="tag greentag">Successful</span></p><p>Invoice ID <b>INV-1687</b></p><p>Payment Date <b>Apr 29, 2025</b></p><p>Payment Method <b>Credit Card</b></p></div><div><p>Amount Paid <b>$3,450.00</b></p><p>Transaction Fee <b>$0.00</b></p><p>Total Amount <b>$3,450.00</b></p><p>Status <b class="success">Completed</b></p></div><div class="card-visual">•••• •••• •••• 4242 <span>✓</span></div></section>
+      </section>
+
+      <section class="admin-page logout-page" id="logout">
+        <div class="logout-modal"><span class="logout-symbol">⇥</span><h1>Logout</h1><p>Are you sure you want to logout from your account?</p><div><button class="admin-select" data-user-tab="dashboard">Cancel</button><button class="primary-dash-btn" onclick="location.href='signin.html'">Yes, Logout</button></div></div>
+      </section>
+    </main>
+  </div>
+<script>
+(function(){
+  const tabs = document.querySelectorAll('[data-user-tab]');
+  const pages = document.querySelectorAll('.admin-page');
+  function show(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.userTab === id));
+    window.scrollTo({top:0, behavior:'smooth'});
+    if(id !== 'logout') history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(t => t.addEventListener('click', function(e){ e.preventDefault(); show(this.dataset.userTab); }));
+  document.querySelectorAll('tr[data-user-tab]').forEach(row => row.addEventListener('click', () => show(row.dataset.userTab)));
+  const initial = location.hash.replace('#','');
+  if(initial && document.getElementById(initial)) show(initial);
+})();
+</script>
+
+<script>
+(function(){
+  const app=document.querySelector('.admin-v2');
+  if(!app || document.querySelector('.dashboard-mobile-toggle')) return;
+  const btn=document.createElement('button');
+  btn.className='dashboard-mobile-toggle';
+  btn.type='button';
+  btn.setAttribute('aria-label','Toggle dashboard menu');
+  btn.textContent='☰';
+  document.body.appendChild(btn);
+  const sync=()=>{ btn.textContent=app.classList.contains('sidebar-open')?'×':'☰'; document.body.style.overflow=app.classList.contains('sidebar-open')?'hidden':''; };
+  btn.addEventListener('click',()=>{ app.classList.toggle('sidebar-open'); sync(); });
+  app.querySelectorAll('.admin-nav a,.admin-logout').forEach(a=>a.addEventListener('click',()=>{ app.classList.remove('sidebar-open'); sync(); }));
+})();
+</script>
+</body>
+</html>

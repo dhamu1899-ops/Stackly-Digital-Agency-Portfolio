@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up - Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="css/style.css" rel="stylesheet">
+</head>
+<body><div class="site-shell auth-page auth-clean">
+  <main class="container-xl auth-layout"><img class="auth-character" src="assets/character-auth.png" alt=""><section class="auth-card">
+    <a class="auth-close" href="index.html" aria-label="Close">×</a>
+    <a class="brand auth-logo" href="index.html" aria-label="Stackly home"><img class="brand-logo" src="assets/stackly-logo.svg" alt="">Stackly</a>
+    <h1 data-dots>Create Account</h1>
+    <p>Create your Stackly account and choose the workspace role you need.</p>
+    <form class="auth-form" novalidate>
+      <div class="role-select"><span>Role</span><div><button type="button" class="role-btn active">Admin</button><button type="button" class="role-btn">User</button></div></div>
+      <div class="field-wrap"><input type="text" name="name" placeholder="Full Name" required><small class="field-error"></small></div>
+      <div class="field-wrap"><input type="email" name="email" placeholder="Email" required><small class="field-error"></small></div>
+      <div class="field-wrap"><input type="password" name="password" placeholder="Password" required><small class="field-error"></small></div>
+      <div class="auth-row"><label class="terms-inline"><input type="checkbox" required> <span>I agree to the terms and conditions</span></label><a href="404.html">Forgot Password</a></div>
+      <a class="google-btn" href="404.html"><b>G</b> Continue with Google</a>
+      <button class="pill-btn" type="submit">Sign Up</button>
+    </form>
+    <div class="auth-switch">Already have an account? <a href="signin.html">Sign in</a></div>
+  </section></main>
+</div><script src="js/main.js"></script></body></html>

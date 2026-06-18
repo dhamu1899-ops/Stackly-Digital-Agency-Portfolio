@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard - Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="admin-dashboard-body">
+  <div class="admin-app admin-v2">
+    <aside class="admin-sidebar">
+      <a class="admin-logo" href="index.html"><img src="assets/stackly-logo.svg" alt="">Stackly</a>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a class="active" href="#dashboard" data-admin-tab="dashboard"><span class="admin-icon">⌂</span>Dashboard</a>
+        <a href="#projects" data-admin-tab="projects"><span class="admin-icon">▣</span>Projects</a>
+        <a href="#clients" data-admin-tab="clients"><span class="admin-icon">♟</span>Clients</a>
+        <a href="#team" data-admin-tab="team"><span class="admin-icon">♚</span>Team Members</a>
+        <a href="#services" data-admin-tab="services"><span class="admin-icon">⚙</span>Services</a>
+        <a href="#invoices" data-admin-tab="invoices"><span class="admin-icon">▤</span>Invoices</a>
+        <a href="#payments" data-admin-tab="payments"><span class="admin-icon">▭</span>Payments</a>
+        <a href="#reports" data-admin-tab="reports"><span class="admin-icon">◫</span>Reports</a>
+        <a href="#messages" data-admin-tab="messages"><span class="admin-icon">✉</span>Messages <span class="admin-badge">12</span></a>
+        <a href="#settings" data-admin-tab="settings"><span class="admin-icon">⚙</span>Settings</a>
+        <a href="#activity" data-admin-tab="activity"><span class="admin-icon">◷</span>Activity Log</a>
+      </nav>
+      <div class="admin-sidebar-bottom">
+        <div class="admin-mini-profile">
+          <img class="admin-avatar" src="assets/team-david.png" alt="">
+          <div><strong>Dhamu</strong><span>Login Admin</span><small>dhamu@gmail.com</small></div>
+          <span style="margin-left:auto">⋮</span>
+        </div>
+        <button class="admin-logout" onclick="location.href='signin.html'"><span class="admin-icon">⇥</span> Logout</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="dashboard-mobile-head" aria-label="Mobile dashboard header">
+        <a class="dashboard-mobile-brand" href="index.html"><img src="assets/stackly-logo.svg" alt=""> <span>Stackly</span></a>
+      </div>
+
+      <div class="admin-topbar">
+        <label class="admin-search"><input placeholder="Search anything..."><span>⌕</span></label>
+        <div class="admin-top-actions">
+          <span class="admin-action-icon">☼</span>
+          <span class="admin-action-icon">♧<b class="admin-dot">5</b></span>
+          <span class="admin-action-icon">✉<b class="admin-dot">8</b></span>
+          <div class="admin-profile">
+            <img class="admin-avatar" src="assets/team-david.png" alt="">
+            <div><strong>Dhamu</strong><span>Login Admin</span><small>dhamu@gmail.com</small></div>
+            <span>⌄</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="admin-page active" id="dashboard">
+        <div class="admin-title-row">
+          <div>
+            <h1>Welcome back, Dhamu! 👋</h1>
+            <p>Here’s what’s happening with your agency today.</p>
+          </div>
+          <button class="admin-date">▣ &nbsp; May 01 - May 31, 2025 &nbsp;⌄</button>
+        </div>
+
+        <section class="admin-kpis">
+          <article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">▣</span><div><span>Total Projects</span><strong>150</strong></div></div><p class="admin-trend">↑ 12.5% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 40"><path d="M0 30 C28 27,36 34,59 28 S88 30,105 25 S132 28,145 20 S172 24,188 12 S218 18,260 6" fill="none" stroke="#ef2a2f" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">♚</span><div><span>Total Clients</span><strong>98</strong></div></div><p class="admin-trend">↑ 8.3% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 40"><path d="M0 31 C22 26,44 33,64 24 S95 29,112 21 S145 30,166 15 S205 27,260 5" fill="none" stroke="#ef2a2f" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">$</span><div><span>Total Revenue</span><strong>$24,580</strong></div></div><p class="admin-trend">↑ 15.7% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 40"><path d="M0 30 C30 29,42 32,61 25 S87 31,103 19 S132 27,154 8 S183 8,204 24 S224 9,260 12" fill="none" stroke="#ef2a2f" stroke-width="3"/></svg></div></article>
+          <article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">▤</span><div><span>Pending Invoices</span><strong>26</strong></div></div><p class="admin-trend">↑ 6.4% <span>vs last month</span></p><div class="sparkline"><svg viewBox="0 0 260 40"><path d="M0 29 C22 25,38 32,59 22 S94 30,112 13 S134 18,151 6 S180 17,202 28 S226 12,260 15" fill="none" stroke="#ef2a2f" stroke-width="3"/></svg></div></article>
+        </section>
+
+        <section class="admin-grid">
+          <article class="admin-panel">
+            <div class="admin-panel-head"><h3>Revenue Overview</h3><button class="admin-select">Monthly ⌄</button></div>
+            <div class="legend"><span><i class="red"></i>This Month</span><span><i class="gray"></i>Last Month</span></div>
+            <div class="admin-chart">
+              <svg viewBox="0 0 720 270" preserveAspectRatio="none">
+                <polyline points="0,230 70,200 140,150 210,165 280,80 350,150 420,115 490,160 560,85 630,142 720,112" fill="none" stroke="#ef2a2f" stroke-width="4"/>
+                <polyline points="0,250 70,225 140,205 210,170 280,190 350,75 420,160 490,210 560,175 630,225 720,65" fill="none" stroke="#777" stroke-width="4"/>
+                <g fill="#ef2a2f"><circle cx="280" cy="80" r="7"/><circle cx="420" cy="115" r="7"/><circle cx="560" cy="85" r="7"/><circle cx="630" cy="142" r="7"/></g>
+              </svg>
+            </div>
+          </article>
+          <article class="admin-panel">
+            <div class="admin-panel-head"><h3>Projects by Status</h3></div>
+            <div class="donut-wrap"><div class="donut"></div><div class="status-list"><div><span><i class="green legend-dot"></i>Completed</span><span>45 (30%)</span></div><div><span><i class="red legend-dot"></i>In Progress</span><span>60 (40%)</span></div><div><span><i class="yellow legend-dot"></i>On Hold</span><span>20 (13.3%)</span></div><div><span><i class="gray legend-dot"></i>Pending</span><span>25 (16.7%)</span></div></div></div>
+          </article>
+          <article class="admin-panel">
+            <div class="admin-panel-head"><h3>Recent Activity</h3></div>
+            <div class="activity-list"><div><span class="circle-icon">▣</span><span>New project “E-commerce Website” created</span><small>10 min ago</small></div><div><span class="circle-icon" style="background:rgba(34,180,60,.24)">$</span><span>Invoice #INV-1687 paid</span><small>25 min ago</small></div><div><span class="circle-icon" style="background:rgba(120,70,220,.25)">♚</span><span>New client “BrightTech” added</span><small>1 hour ago</small></div><div><span class="circle-icon" style="background:rgba(20,115,210,.25)">✓</span><span>Project “Mobile App” completed</span><small>2 hour ago</small></div></div>
+          </article>
+        </section>
+
+        <section class="admin-bottom-grid">
+          <article class="admin-panel"><div class="admin-panel-head"><h3>Top Services</h3><button class="admin-select">This Month ⌄</button></div><div class="progress-row"><div><span>Web Development</span><span>45%</span></div><p class="progress-track"><i style="width:45%"></i></p></div><div class="progress-row"><div><span>UI/UX Design</span><span>25%</span></div><p class="progress-track"><i style="width:25%"></i></p></div><div class="progress-row"><div><span>Digital Marketing</span><span>20%</span></div><p class="progress-track"><i style="width:20%"></i></p></div><div class="progress-row"><div><span>Brand Strategy</span><span>10%</span></div><p class="progress-track"><i style="width:10%"></i></p></div></article>
+          <article class="admin-panel"><div class="admin-panel-head"><h3>Recent Projects</h3><a class="admin-view" href="#projects" data-admin-tab="projects">View All</a></div><div class="list-table"><div><span>◎ E-commerce Website</span><span class="tag redtag">In Progress</span><span>May 28, 2025</span></div><div><span>▯ Mobile App Design</span><span class="tag greentag">Completed</span><span>May 26, 2025</span></div><div><span>↗ SEO Campaign</span><span class="tag redtag">In Progress</span><span>May 24, 2025</span></div><div><span>✎ Brand Identity</span><span class="tag yellowtag">Pending</span><span>May 20, 2025</span></div></div></article>
+          <article class="admin-panel"><div class="admin-panel-head"><h3>Recent Invoices</h3><a class="admin-view" href="#invoices" data-admin-tab="invoices">View All</a></div><div class="list-table"><div><span>INV-1687<br>BrightTech</span><span>$2,450</span><span class="tag greentag">Paid</span></div><div><span>INV-1686<br>GrowthLab</span><span>$1,850</span><span class="tag greentag">Paid</span></div><div><span>INV-1685<br>Creative Studio</span><span>$2,320</span><span class="tag yellowtag">Pending</span></div></div></article>
+          <article class="admin-panel"><div class="admin-panel-head"><h3>Clients Overview</h3><a class="admin-view" href="#clients" data-admin-tab="clients">View All</a></div><div class="list-table"><div><span class="client-pill">B</span><span>BrightTech</span><span>4 Projects</span><span>$8,450</span></div><div><span class="client-pill" style="background:#43ac3e">G</span><span>GrowthLab</span><span>3 Projects</span><span>$6,230</span></div><div><span class="client-pill" style="background:#6f45d8">C</span><span>Creative Studio</span><span>2 Projects</span><span>$4,320</span></div></div></article>
+        </section>
+      </section>
+
+      <section class="admin-page" id="projects">
+        <div class="admin-title-row"><div><h1>Projects</h1><p>Track live, delayed, and completed Stackly projects.</p></div><button class="admin-date">+ New Project</button></div>
+        <div class="admin-kpis"><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">▣</span><div><span>Active Projects</span><strong>60</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">✓</span><div><span>Completed</span><strong>45</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">!</span><div><span>On Hold</span><strong>20</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">⌁</span><div><span>Avg Progress</span><strong>72%</strong></div></div></article></div>
+        <div class="admin-data-grid">
+          <article class="admin-panel big-table"><div class="admin-panel-head"><h3>Project Pipeline</h3><button class="admin-select">Filter ⌄</button></div><table><tr><th>Project</th><th>Client</th><th>Owner</th><th>Progress</th><th>Status</th><th>Due</th></tr><tr><td>E-commerce Website</td><td>BrightTech</td><td>Sarah</td><td><p class="progress-track"><i style="width:72%"></i></p></td><td><span class="tag redtag">In Progress</span></td><td>May 28</td></tr><tr><td>Mobile App Design</td><td>GrowthLab</td><td>David</td><td><p class="progress-track"><i style="width:100%"></i></p></td><td><span class="tag greentag">Completed</span></td><td>May 26</td></tr><tr><td>SEO Campaign</td><td>Creative Studio</td><td>Maya</td><td><p class="progress-track"><i style="width:54%"></i></p></td><td><span class="tag redtag">In Progress</span></td><td>Jun 04</td></tr><tr><td>Landing Page Redesign</td><td>Pixel Perfect</td><td>Alex</td><td><p class="progress-track"><i style="width:84%"></i></p></td><td><span class="tag yellowtag">Review</span></td><td>Jun 09</td></tr></table></article>
+          <article class="admin-panel"><div class="admin-panel-head"><h3>Project Health</h3></div><div class="mini-bars"><span style="height:72%"></span><span style="height:45%"></span><span style="height:84%"></span><span style="height:56%"></span><span style="height:91%"></span><span style="height:63%"></span></div></article>
+        </div>
+      </section>
+
+      <section class="admin-page" id="clients">
+        <div class="admin-title-row"><div><h1>Clients</h1><p>Manage accounts, value, and active relationships.</p></div><button class="admin-date">+ Add Client</button></div>
+        <div class="admin-card-row"><article class="client-card"><span class="client-pill">B</span><h3>BrightTech Solutions</h3><p>4 Projects · $8,450</p><span class="tag greentag">Premium</span></article><article class="client-card"><span class="client-pill" style="background:#43ac3e">G</span><h3>GrowthLab Inc.</h3><p>3 Projects · $6,230</p><span class="tag greentag">Active</span></article><article class="client-card"><span class="client-pill" style="background:#6f45d8">C</span><h3>Creative Studio</h3><p>2 Projects · $4,320</p><span class="tag yellowtag">Review</span></article><article class="client-card"><span class="client-pill" style="background:#e7a91d">P</span><h3>Pixel Perfect</h3><p>2 Projects · $3,580</p><span class="tag redtag">Follow-up</span></article></div>
+      </section>
+
+      <section class="admin-page" id="team">
+        <div class="admin-title-row"><div><h1>Team Members</h1><p>Design, development, marketing, and strategy team workload.</p></div><button class="admin-date">+ Add Member</button></div>
+        <div class="admin-team-grid"><article><img src="assets/team-sarah.png"><h3>Sarah Kim</h3><p>UI/UX Designer</p><div class="progress-track"><i style="width:86%"></i></div></article><article><img src="assets/team-david.png"><h3>David Chen</h3><p>Web Developer</p><div class="progress-track"><i style="width:78%"></i></div></article><article><img src="assets/team-maya.png"><h3>Maya Patel</h3><p>SEO Marketing</p><div class="progress-track"><i style="width:69%"></i></div></article><article><img src="assets/team-alex.png"><h3>Alex Rivera</h3><p>Brand Strategy</p><div class="progress-track"><i style="width:74%"></i></div></article></div>
+      </section>
+
+      <section class="admin-page" id="services">
+        <div class="admin-title-row"><div><h1>Services</h1><p>Monitor service performance and demand.</p></div><button class="admin-date">Export</button></div>
+        <div class="admin-service-cards"><article><span>⌘</span><h3>Web Development</h3><strong>45%</strong><p>68 requests this month</p></article><article><span>✦</span><h3>UI/UX Design</h3><strong>25%</strong><p>42 active design tasks</p></article><article><span>↗</span><h3>Digital Marketing</h3><strong>20%</strong><p>31 campaigns live</p></article><article><span>◈</span><h3>Brand Strategy</h3><strong>10%</strong><p>12 strategy sessions</p></article></div>
+      </section>
+
+      <section class="admin-page" id="invoices">
+        <div class="admin-title-row"><div><h1>Invoices</h1><p>Payment status, pending billing, and overdue items.</p></div><button class="admin-date">+ Invoice</button></div>
+        <article class="admin-panel big-table"><table><tr><th>Invoice</th><th>Client</th><th>Amount</th><th>Status</th><th>Date</th></tr><tr><td>INV-1687</td><td>BrightTech</td><td>$2,450</td><td><span class="tag greentag">Paid</span></td><td>May 29</td></tr><tr><td>INV-1686</td><td>GrowthLab</td><td>$1,850</td><td><span class="tag greentag">Paid</span></td><td>May 27</td></tr><tr><td>INV-1685</td><td>Creative Studio</td><td>$2,320</td><td><span class="tag yellowtag">Pending</span></td><td>May 25</td></tr><tr><td>INV-1684</td><td>Pixel Perfect</td><td>$1,280</td><td><span class="tag redtag">Overdue</span></td><td>May 21</td></tr></table></article>
+      </section>
+
+      <section class="admin-page" id="payments">
+        <div class="admin-title-row"><div><h1>Payments</h1><p>Incoming cashflow and transaction records.</p></div><button class="admin-date">Download CSV</button></div>
+        <div class="admin-kpis"><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">$</span><div><span>Received</span><strong>$18,900</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">⌛</span><div><span>Pending</span><strong>$5,680</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">!</span><div><span>Overdue</span><strong>$1,280</strong></div></div></article><article class="admin-kpi"><div class="admin-kpi-top"><span class="admin-kpi-icon">↗</span><div><span>Growth</span><strong>15.7%</strong></div></div></article></div>
+        <article class="admin-panel"><div class="admin-chart"><svg viewBox="0 0 720 270" preserveAspectRatio="none"><polyline points="0,230 80,220 160,180 240,130 320,170 400,95 480,120 560,70 640,110 720,55" fill="none" stroke="#ef2a2f" stroke-width="4"/></svg></div></article>
+      </section>
+
+      <section class="admin-page" id="reports">
+        <div class="admin-title-row"><div><h1>Reports</h1><p>Performance reports and agency intelligence.</p></div><button class="admin-date">Generate Report</button></div>
+        <div class="admin-report-grid"><article><h3>Monthly Revenue</h3><strong>$24,580</strong><p>↑ 15.7% increase</p></article><article><h3>Conversion Rate</h3><strong>8.6%</strong><p>Lead to client</p></article><article><h3>Delivery Speed</h3><strong>92%</strong><p>On-time milestones</p></article><article><h3>Client Rating</h3><strong>4.9/5</strong><p>Average satisfaction</p></article></div>
+      </section>
+
+      <section class="admin-page" id="messages">
+        <div class="admin-title-row"><div><h1>Messages</h1><p>New enquiries, support notes, and internal updates.</p></div><button class="admin-date">Compose</button></div>
+        <div class="admin-message-list"><article><span class="client-pill">A</span><div><h3>Alex Johnson</h3><p>Can we review the mobile app screens today?</p></div><small>3 hour ago</small></article><article><span class="client-pill" style="background:#43ac3e">M</span><div><h3>Maya Patel</h3><p>SEO campaign report is ready for approval.</p></div><small>Yesterday</small></article><article><span class="client-pill" style="background:#6f45d8">B</span><div><h3>BrightTech</h3><p>New checkout requirements attached.</p></div><small>2 days ago</small></article></div>
+      </section>
+
+      <section class="admin-page" id="settings">
+        <div class="admin-title-row">
+          <div><h1>Settings</h1><p>Manage account controls, security, notifications, billing, and workspace preferences.</p></div>
+          <button class="admin-date">▣ &nbsp; May 01 - May 31, 2025 &nbsp;⌄</button>
+        </div>
+        <div class="admin-data-grid">
+          <article class="admin-panel settings-panel">
+            <div class="admin-panel-head"><h3>General Settings</h3><button class="admin-select">Save Changes</button></div>
+            <div class="settings-grid">
+              <label>Language<select><option>English</option></select></label>
+              <label>Timezone<select><option>(GMT-05:00) New York</option></select></label>
+              <label>Date Format<select><option>MM/DD/YYYY</option></select></label>
+              <label>Currency<select><option>USD - US Dollar</option></select></label>
+            </div>
+            <div class="theme-switch"><span>Theme</span><button>Light</button><button class="active">Dark</button><button>System</button></div>
+          </article>
+          <article class="admin-panel">
+            <div class="admin-panel-head"><h3>Security</h3></div>
+            <div class="activity-list">
+              <div><span class="circle-icon">✓</span><span>Two-factor authentication enabled</span><small>Active</small></div>
+              <div><span class="circle-icon">⌁</span><span>Password changed recently</span><small>May 26</small></div>
+              <div><span class="circle-icon">◉</span><span>Session timeout set to 30 minutes</span><small>Safe</small></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-page" id="activity">
+        <div class="admin-title-row">
+          <div><h1>Activity Log</h1><p>Track every major project, invoice, client, and team update in one place.</p></div>
+          <button class="admin-date">▣ &nbsp; May 01 - May 31, 2025 &nbsp;⌄</button>
+        </div>
+        <div class="admin-panel big-table">
+          <div class="admin-panel-head"><h3>Recent Workspace Activity</h3><button class="admin-select">Export Log</button></div>
+          <table>
+            <thead><tr><th>Activity</th><th>Module</th><th>User</th><th>Status</th><th>Date</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td>Created new e-commerce website project</td><td>Projects</td><td>Dhamu</td><td><span class="tag greentag">Completed</span></td><td>May 31, 2025</td><td>10:30 AM</td></tr>
+              <tr><td>Invoice #INV-1687 marked as paid</td><td>Invoices</td><td>Dhamu</td><td><span class="tag greentag">Paid</span></td><td>May 30, 2025</td><td>04:15 PM</td></tr>
+              <tr><td>Added Sarah Kim to design team</td><td>Team</td><td>Dhamu</td><td><span class="tag redtag">Updated</span></td><td>May 29, 2025</td><td>01:20 PM</td></tr>
+              <tr><td>Generated monthly revenue report</td><td>Reports</td><td>Dhamu</td><td><span class="tag yellowtag">Exported</span></td><td>May 28, 2025</td><td>09:45 AM</td></tr>
+              <tr><td>Updated SEO optimization service pricing</td><td>Services</td><td>Dhamu</td><td><span class="tag redtag">Changed</span></td><td>May 27, 2025</td><td>06:10 PM</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('[data-admin-tab]');
+  const pages = document.querySelectorAll('.admin-page');
+  function show(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.adminTab === id));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  tabs.forEach(t => t.addEventListener('click', function(e){ e.preventDefault(); show(this.dataset.adminTab); history.replaceState(null,'','#'+this.dataset.adminTab); }));
+  const initial = location.hash.replace('#','');
+  if(initial && document.getElementById(initial)) show(initial);
+})();
+</script>
+
+<script>
+(function(){
+  const app=document.querySelector('.admin-v2');
+  if(!app || document.querySelector('.dashboard-mobile-toggle')) return;
+  const btn=document.createElement('button');
+  btn.className='dashboard-mobile-toggle';
+  btn.type='button';
+  btn.setAttribute('aria-label','Toggle dashboard menu');
+  btn.textContent='☰';
+  document.body.appendChild(btn);
+  const sync=()=>{ btn.textContent=app.classList.contains('sidebar-open')?'×':'☰'; document.body.style.overflow=app.classList.contains('sidebar-open')?'hidden':''; };
+  btn.addEventListener('click',()=>{ app.classList.toggle('sidebar-open'); sync(); });
+  app.querySelectorAll('.admin-nav a,.admin-logout').forEach(a=>a.addEventListener('click',()=>{ app.classList.remove('sidebar-open'); sync(); }));
+})();
+</script>
+</body>
+</html>

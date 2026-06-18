@@ -45,7 +45,7 @@
           <span class="admin-action-icon">✉<b class="admin-dot">5</b></span>
           <div class="admin-profile">
             <img class="admin-avatar" src="assets/team-david.png" alt="">
-            <div><strong>Dhamu</strong><span>Login User</span><small>dhamu@gmail.com</small></div>
+            <div><strong>User</strong><span>Login User</span><small>user@example.com</small></div>
             
           </div>
         </div>
@@ -53,7 +53,7 @@
 
       <section class="admin-page active" id="dashboard">
         <div class="admin-title-row">
-          <div><h1>Welcome back, Dhamu! 👋</h1><p>Here’s what’s happening with your projects.</p></div>
+          <div><h1>Welcome back, User! 👋</h1><p>Here’s what’s happening with your projects.</p></div>
           <button class="admin-select">▣ &nbsp; May 01 - May 31, 2025</button>
         </div>
         <div class="admin-kpis">
@@ -124,7 +124,7 @@
 
       <section class="admin-page" id="profile">
         <div class="admin-title-row"><div><h1>Profile</h1><p>Manage your personal information.</p></div></div>
-        <div class="profile-layout"><section class="admin-panel profile-card"><img src="assets/team-david.png"><h3>Dhamu</h3><p>Login User</p><small>Member since Jan 15, 2025</small><button class="admin-select">Edit Profile</button></section><section class="admin-panel profile-form"><label>Full Name<input value="Dhamu"></label><label>Email Address<input value="dhamu@gmail.com"></label><label>Phone Number<input value="+1 (555) 123-4567"></label><label>Location<input value="New York, USA"></label><label>Bio<textarea>Passionate about creating digital experiences.</textarea></label><button class="primary-dash-btn">Save Changes</button></section></div>
+        <div class="profile-layout"><section class="admin-panel profile-card"><img src="assets/team-david.png"><h3>Guest</h3><p>Login User</p><small>Member since Jan 15, 2025</small><button class="admin-select">Edit Profile</button></section><section class="admin-panel profile-form"><label>Full Name<input value="Guest"></label><label>Email Address<input value="user@example.com"></label><label>Phone Number<input value="+1 (555) 123-4567"></label><label>Location<input value="New York, USA"></label><label>Bio<textarea>Passionate about creating digital experiences.</textarea></label><button class="primary-dash-btn">Save Changes</button></section></div>
       </section>
 
       <section class="admin-page" id="settings">
@@ -134,7 +134,7 @@
 
       <section class="admin-page" id="project-detail">
         <div class="admin-title-row"><div><a class="admin-view" data-user-tab="projects" href="#projects">‹ Back to Projects</a><h1>E-commerce Website</h1></div><span class="tag redtag">In Progress</span></div>
-        <section class="admin-panel"><div class="detail-tabs"><button class="active">Overview</button><button>Tasks</button><button>Files</button><button>Team</button><button>Invoices</button><button>Activity</button></div><div class="project-detail-grid"><div><h3>Project Description</h3><p>Building a modern and responsive e-commerce website with advanced features and seamless user experience.</p><div class="detail-list"><p><b>Category</b><span>Web Development</span></p><p><b>Start Date</b><span>Apr 01, 2025</span></p><p><b>Due Date</b><span>May 28, 2025</span></p><p><b>Budget</b><span>$4,250</span></p><p><b>Progress</b><span class="mini-line"><i style="width:75%"></i></span></p></div></div><aside class="admin-panel"><h3>Team Members</h3><article class="mini-member"><img src="assets/team-david.png"><span>Dhamu<br><small>Project Manager</small></span></article><article class="mini-member"><img src="assets/team-sarah.png"><span>Sarah Kim<br><small>UI/UX Designer</small></span></article><article class="mini-member"><img src="assets/team-alex.png"><span>Alex Rivera<br><small>Developer</small></span></article><h3>Technologies</h3><p><span class="tag">React</span> <span class="tag">Node.js</span> <span class="tag">MongoDB</span> <span class="tag">Tailwind CSS</span></p></aside></div></section>
+        <section class="admin-panel"><div class="detail-tabs"><button class="active">Overview</button><button>Tasks</button><button>Files</button><button>Team</button><button>Invoices</button><button>Activity</button></div><div class="project-detail-grid"><div><h3>Project Description</h3><p>Building a modern and responsive e-commerce website with advanced features and seamless user experience.</p><div class="detail-list"><p><b>Category</b><span>Web Development</span></p><p><b>Start Date</b><span>Apr 01, 2025</span></p><p><b>Due Date</b><span>May 28, 2025</span></p><p><b>Budget</b><span>$4,250</span></p><p><b>Progress</b><span class="mini-line"><i style="width:75%"></i></span></p></div></div><aside class="admin-panel"><h3>Team Members</h3><article class="mini-member"><img src="assets/team-david.png"><span>User<br><small>Project Manager</small></span></article><article class="mini-member"><img src="assets/team-sarah.png"><span>Sarah Kim<br><small>UI/UX Designer</small></span></article><article class="mini-member"><img src="assets/team-alex.png"><span>Alex Rivera<br><small>Developer</small></span></article><h3>Technologies</h3><p><span class="tag">React</span> <span class="tag">Node.js</span> <span class="tag">MongoDB</span> <span class="tag">Tailwind CSS</span></p></aside></div></section>
       </section>
 
       <section class="admin-page" id="invoice-detail">
@@ -182,6 +182,65 @@
   const sync=()=>{ btn.textContent=app.classList.contains('sidebar-open')?'×':'☰'; document.body.style.overflow=app.classList.contains('sidebar-open')?'hidden':''; };
   btn.addEventListener('click',()=>{ app.classList.toggle('sidebar-open'); sync(); });
   app.querySelectorAll('.admin-nav a,.admin-logout').forEach(a=>a.addEventListener('click',()=>{ app.classList.remove('sidebar-open'); sync(); }));
+})();
+</script>
+
+<script>
+(function(){
+  function normalizeEmail(value){ return String(value || '').trim().toLowerCase().replace(/\s+/g, ''); }
+  function displayNameFromEmail(email){
+    const prefix = normalizeEmail(email).split('@')[0] || 'user';
+    return prefix.replace(/[._-]+/g, ' ').split(' ').filter(Boolean)
+      .map(function(part){ return part.charAt(0).toUpperCase() + part.slice(1); }).join(' ') || 'User';
+  }
+  function pageRole(){ return document.body.classList.contains('user-dashboard-body') ? 'user' : 'admin'; }
+  function roleLabel(role){ return role === 'admin' ? 'Login Admin' : 'Login User'; }
+  function readProfile(){
+    const params = new URLSearchParams(location.search);
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem('stacklyCurrentUser') || localStorage.getItem('stacklyAuthUser') || '{}') || {}; } catch(e) {}
+    const role = pageRole();
+    const email = normalizeEmail(params.get('email') || sessionStorage.getItem('stacklyLoginEmail') || localStorage.getItem('stacklyLoginEmail') || stored.email || '');
+    return { email: email, name: displayNameFromEmail(email), role: role, label: roleLabel(role) };
+  }
+  function saveProfile(profile){
+    if(!profile.email) return;
+    localStorage.setItem('stacklyCurrentUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyAuthUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyLoginEmail', profile.email);
+    localStorage.setItem('stacklyLoginRole', profile.role);
+    localStorage.setItem('stacklyLoginName', profile.name);
+    sessionStorage.setItem('stacklyLoginEmail', profile.email);
+    sessionStorage.setItem('stacklyLoginRole', profile.role);
+    sessionStorage.setItem('stacklyLoginName', profile.name);
+  }
+  function apply(){
+    if(!document.body.classList.contains('admin-dashboard-body')) return;
+    const p = readProfile();
+    if(!p.email) return;
+    saveProfile(p);
+    document.querySelectorAll('.admin-profile, .admin-mini-profile').forEach(function(card){
+      const strong = card.querySelector('strong');
+      const small = card.querySelector('small');
+      const span = Array.from(card.querySelectorAll('span')).find(function(el){ return !el.classList.contains('admin-icon') && !el.classList.contains('admin-dot'); });
+      if(strong) strong.textContent = p.name;
+      if(span) span.textContent = p.label;
+      if(small) small.textContent = p.email;
+    });
+    document.querySelectorAll('.admin-title-row h1, .dashboard-welcome h1').forEach(function(h){ h.textContent = 'Welcome back, ' + p.name + '! 👋'; });
+    document.querySelectorAll('.profile-card h3').forEach(function(el){ el.textContent = p.name; });
+    document.querySelectorAll('.profile-card p').forEach(function(el){ el.textContent = p.label; });
+    document.querySelectorAll('.profile-form input').forEach(function(input){
+      const txt = input.closest('label') ? input.closest('label').textContent : '';
+      if(/Full Name/i.test(txt)) input.value = p.name;
+      if(/Email Address/i.test(txt)) input.value = p.email;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('pageshow', apply);
+  setTimeout(apply, 0);
+  setTimeout(apply, 200);
 })();
 </script>
 </body>

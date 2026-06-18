@@ -16,7 +16,7 @@
     <form class="auth-form" novalidate>
       <div class="role-select"><span>Role</span><div><button type="button" class="role-btn active">Admin</button><button type="button" class="role-btn">User</button></div></div>
       <div class="field-wrap"><input type="text" name="name" placeholder="Full Name" required><small class="field-error"></small></div>
-      <div class="field-wrap"><input type="email" name="email" placeholder="Email" required><small class="field-error"></small></div>
+      <div class="field-wrap"><input type="email" name="email" placeholder="Email" autocapitalize="none" spellcheck="false" required><small class="field-error"></small></div>
       <div class="field-wrap"><input type="password" name="password" placeholder="Password" required><small class="field-error"></small></div>
       <div class="auth-row"><label class="terms-inline"><input type="checkbox" required> <span>I agree to the terms and conditions</span></label><a href="404.html">Forgot Password</a></div>
       <button class="pill-btn" type="submit">Sign Up</button>
@@ -24,4 +24,66 @@
     </form>
     <div class="auth-switch">Already have an account? <a href="signin.html">Sign in</a></div>
   </section></main>
-</div><script src="js/main.js"></script></body></html>
+</div><script src="js/main.js"></script>
+<script>
+(function(){
+  function cleanEmail(value){ return String(value || '').trim().toLowerCase().replace(/\s+/g, ''); }
+  function makeName(email){
+    const prefix = cleanEmail(email).split('@')[0] || 'user';
+    return prefix.replace(/[._-]+/g, ' ').split(' ').filter(Boolean)
+      .map(function(part){ return part.charAt(0).toUpperCase() + part.slice(1); }).join(' ') || 'User';
+  }
+  function cleanRole(value){ return String(value || 'user').toLowerCase().includes('admin') ? 'admin' : 'user'; }
+  document.querySelectorAll('input[type="email"]').forEach(function(input){
+    input.setAttribute('autocapitalize','none');
+    input.setAttribute('spellcheck','false');
+    input.addEventListener('input', function(){ input.value = cleanEmail(input.value); });
+  });
+  document.querySelectorAll('input[type="password"]').forEach(function(input){
+    if(input.parentElement && input.parentElement.querySelector('.password-toggle-btn')) return;
+    input.parentElement && input.parentElement.classList.add('password-field-wrap');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'password-toggle-btn';
+    btn.textContent = '👁';
+    btn.setAttribute('aria-label','Show password');
+    btn.addEventListener('click', function(){
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.textContent = show ? '🙈' : '👁';
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+    input.insertAdjacentElement('afterend', btn);
+  });
+  window.addEventListener('submit', function(event){
+    const form = event.target;
+    if(!(form instanceof HTMLFormElement) || !form.closest('.auth-page')) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    const emailInput = form.querySelector('input[type="email"]');
+    const passInput = form.querySelector('input[type="password"], input[type="text"][name*="password" i]');
+    const terms = form.querySelector('.terms-inline input[type="checkbox"]');
+    const email = cleanEmail(emailInput && emailInput.value);
+    if(emailInput) emailInput.value = email;
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a correct email address.'); emailInput && emailInput.focus(); return; }
+    if(passInput && !passInput.value.trim()){ alert('Password is required.'); passInput.focus(); return; }
+    if(terms && !terms.checked){ alert('Please agree to the terms and conditions.'); terms.focus(); return; }
+    const activeRole = form.querySelector('.role-btn.active');
+    const role = cleanRole(activeRole ? activeRole.textContent : 'user');
+    const profile = { email: email, name: makeName(email), role: role, label: role === 'admin' ? 'Login Admin' : 'Login User', loggedInAt: Date.now() };
+    localStorage.setItem('stacklyCurrentUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyAuthUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyLoginEmail', profile.email);
+    localStorage.setItem('stacklyLoginRole', profile.role);
+    localStorage.setItem('stacklyLoginName', profile.name);
+    sessionStorage.setItem('stacklyLoginEmail', profile.email);
+    sessionStorage.setItem('stacklyLoginRole', profile.role);
+    sessionStorage.setItem('stacklyLoginName', profile.name);
+    const target = role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+    const q = new URLSearchParams({ email: profile.email, role: profile.role, t: String(Date.now()) }).toString();
+    location.href = target + '?' + q;
+  }, true);
+})();
+</script>
+</body></html>

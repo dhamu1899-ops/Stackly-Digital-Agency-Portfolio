@@ -27,7 +27,7 @@
       <div class="admin-sidebar-bottom">
         <div class="admin-mini-profile">
           <img class="admin-avatar" src="assets/team-david.png" alt="">
-          <div><strong>Dhamu</strong><span>Login Admin</span><small>dhamu@gmail.com</small></div>
+          <div><strong>User</strong><span>Login Admin</span><small>user@example.com</small></div>
           <span style="margin-left:auto">⋮</span>
         </div>
         <button class="admin-logout" onclick="location.href='signin.html'"><span class="admin-icon">⇥</span> Logout</button>
@@ -47,7 +47,7 @@
           <span class="admin-action-icon">✉<b class="admin-dot">8</b></span>
           <div class="admin-profile">
             <img class="admin-avatar" src="assets/team-david.png" alt="">
-            <div><strong>Dhamu</strong><span>Login Admin</span><small>dhamu@gmail.com</small></div>
+            <div><strong>User</strong><span>Login Admin</span><small>user@example.com</small></div>
             
           </div>
         </div>
@@ -56,7 +56,7 @@
       <section class="admin-page active" id="dashboard">
         <div class="admin-title-row">
           <div>
-            <h1>Welcome back, Dhamu! 👋</h1>
+            <h1>Welcome back, User! 👋</h1>
             <p>Here’s what’s happening with your agency today.</p>
           </div>
           <button class="admin-date">▣ &nbsp; May 01 - May 31, 2025 </button>
@@ -181,11 +181,11 @@
           <table>
             <thead><tr><th>Activity</th><th>Module</th><th>User</th><th>Status</th><th>Date</th><th>Time</th></tr></thead>
             <tbody>
-              <tr><td>Created new e-commerce website project</td><td>Projects</td><td>Dhamu</td><td><span class="tag greentag">Completed</span></td><td>May 31, 2025</td><td>10:30 AM</td></tr>
-              <tr><td>Invoice #INV-1687 marked as paid</td><td>Invoices</td><td>Dhamu</td><td><span class="tag greentag">Paid</span></td><td>May 30, 2025</td><td>04:15 PM</td></tr>
-              <tr><td>Added Sarah Kim to design team</td><td>Team</td><td>Dhamu</td><td><span class="tag redtag">Updated</span></td><td>May 29, 2025</td><td>01:20 PM</td></tr>
-              <tr><td>Generated monthly revenue report</td><td>Reports</td><td>Dhamu</td><td><span class="tag yellowtag">Exported</span></td><td>May 28, 2025</td><td>09:45 AM</td></tr>
-              <tr><td>Updated SEO optimization service pricing</td><td>Services</td><td>Dhamu</td><td><span class="tag redtag">Changed</span></td><td>May 27, 2025</td><td>06:10 PM</td></tr>
+              <tr><td>Created new e-commerce website project</td><td>Projects</td><td>User</td><td><span class="tag greentag">Completed</span></td><td>May 31, 2025</td><td>10:30 AM</td></tr>
+              <tr><td>Invoice #INV-1687 marked as paid</td><td>Invoices</td><td>User</td><td><span class="tag greentag">Paid</span></td><td>May 30, 2025</td><td>04:15 PM</td></tr>
+              <tr><td>Added Sarah Kim to design team</td><td>Team</td><td>User</td><td><span class="tag redtag">Updated</span></td><td>May 29, 2025</td><td>01:20 PM</td></tr>
+              <tr><td>Generated monthly revenue report</td><td>Reports</td><td>User</td><td><span class="tag yellowtag">Exported</span></td><td>May 28, 2025</td><td>09:45 AM</td></tr>
+              <tr><td>Updated SEO optimization service pricing</td><td>Services</td><td>User</td><td><span class="tag redtag">Changed</span></td><td>May 27, 2025</td><td>06:10 PM</td></tr>
             </tbody>
           </table>
         </div>
@@ -222,6 +222,65 @@
   const sync=()=>{ btn.textContent=app.classList.contains('sidebar-open')?'×':'☰'; document.body.style.overflow=app.classList.contains('sidebar-open')?'hidden':''; };
   btn.addEventListener('click',()=>{ app.classList.toggle('sidebar-open'); sync(); });
   app.querySelectorAll('.admin-nav a,.admin-logout').forEach(a=>a.addEventListener('click',()=>{ app.classList.remove('sidebar-open'); sync(); }));
+})();
+</script>
+
+<script>
+(function(){
+  function normalizeEmail(value){ return String(value || '').trim().toLowerCase().replace(/\s+/g, ''); }
+  function displayNameFromEmail(email){
+    const prefix = normalizeEmail(email).split('@')[0] || 'user';
+    return prefix.replace(/[._-]+/g, ' ').split(' ').filter(Boolean)
+      .map(function(part){ return part.charAt(0).toUpperCase() + part.slice(1); }).join(' ') || 'User';
+  }
+  function pageRole(){ return document.body.classList.contains('user-dashboard-body') ? 'user' : 'admin'; }
+  function roleLabel(role){ return role === 'admin' ? 'Login Admin' : 'Login User'; }
+  function readProfile(){
+    const params = new URLSearchParams(location.search);
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem('stacklyCurrentUser') || localStorage.getItem('stacklyAuthUser') || '{}') || {}; } catch(e) {}
+    const role = pageRole();
+    const email = normalizeEmail(params.get('email') || sessionStorage.getItem('stacklyLoginEmail') || localStorage.getItem('stacklyLoginEmail') || stored.email || '');
+    return { email: email, name: displayNameFromEmail(email), role: role, label: roleLabel(role) };
+  }
+  function saveProfile(profile){
+    if(!profile.email) return;
+    localStorage.setItem('stacklyCurrentUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyAuthUser', JSON.stringify(profile));
+    localStorage.setItem('stacklyLoginEmail', profile.email);
+    localStorage.setItem('stacklyLoginRole', profile.role);
+    localStorage.setItem('stacklyLoginName', profile.name);
+    sessionStorage.setItem('stacklyLoginEmail', profile.email);
+    sessionStorage.setItem('stacklyLoginRole', profile.role);
+    sessionStorage.setItem('stacklyLoginName', profile.name);
+  }
+  function apply(){
+    if(!document.body.classList.contains('admin-dashboard-body')) return;
+    const p = readProfile();
+    if(!p.email) return;
+    saveProfile(p);
+    document.querySelectorAll('.admin-profile, .admin-mini-profile').forEach(function(card){
+      const strong = card.querySelector('strong');
+      const small = card.querySelector('small');
+      const span = Array.from(card.querySelectorAll('span')).find(function(el){ return !el.classList.contains('admin-icon') && !el.classList.contains('admin-dot'); });
+      if(strong) strong.textContent = p.name;
+      if(span) span.textContent = p.label;
+      if(small) small.textContent = p.email;
+    });
+    document.querySelectorAll('.admin-title-row h1, .dashboard-welcome h1').forEach(function(h){ h.textContent = 'Welcome back, ' + p.name + '! 👋'; });
+    document.querySelectorAll('.profile-card h3').forEach(function(el){ el.textContent = p.name; });
+    document.querySelectorAll('.profile-card p').forEach(function(el){ el.textContent = p.label; });
+    document.querySelectorAll('.profile-form input').forEach(function(input){
+      const txt = input.closest('label') ? input.closest('label').textContent : '';
+      if(/Full Name/i.test(txt)) input.value = p.name;
+      if(/Email Address/i.test(txt)) input.value = p.email;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('pageshow', apply);
+  setTimeout(apply, 0);
+  setTimeout(apply, 200);
 })();
 </script>
 </body>

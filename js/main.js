@@ -15,6 +15,42 @@ const showToast = (message) => {
   showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2400);
 };
 
+// Signup page: validate all fields, show success message, then return to Home.
+window.addEventListener("submit", (event) => {
+  const form = event.target;
+  if (!(form instanceof HTMLFormElement) || !form.closest(".auth-page") || !window.location.pathname.toLowerCase().includes("signup")) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+
+  const nameInput = form.querySelector('input[name="name"]');
+  const emailInput = form.querySelector('input[type="email"]');
+  const passwordInput = form.querySelector('input[name="password"]');
+  const confirmInput = form.querySelector('input[name="confirmPassword"]');
+  const terms = form.querySelector('.terms-inline input[type="checkbox"]');
+
+  const name = String(nameInput?.value || "").trim();
+  const email = String(emailInput?.value || "").trim().toLowerCase().replace(/\s+/g, "");
+  const password = String(passwordInput?.value || "").trim();
+  const confirmPassword = String(confirmInput?.value || "").trim();
+
+  if (emailInput) emailInput.value = email;
+
+  if (!name) { showToast?.("Name is required."); nameInput?.focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast?.("Please enter a correct email address."); emailInput?.focus(); return; }
+  if (!password) { showToast?.("Password is required."); passwordInput?.focus(); return; }
+  if (!confirmPassword) { showToast?.("Confirm password is required."); confirmInput?.focus(); return; }
+  if (password !== confirmPassword) { showToast?.("Password and confirm password must match."); confirmInput?.focus(); return; }
+  if (terms && !terms.checked) { showToast?.("Please agree to the terms and conditions."); terms.focus(); return; }
+
+  const role = form.querySelector(".role-btn.active")?.textContent.trim().toLowerCase() || "user";
+  localStorage.setItem("stacklySignupUser", JSON.stringify({ name, email, role, signedUpAt: Date.now() }));
+
+  showToast?.("Account created successfully!");
+  window.setTimeout(() => { window.location.href = "index.html"; }, 2000);
+}, true);
+
 
 /* FINAL FIX: dynamic login profile + password show/hide */
 (() => {
@@ -648,6 +684,12 @@ document.querySelectorAll(".role-select").forEach((group) => {
 
     const role = form.querySelector(".role-btn.active")?.textContent.trim().toLowerCase() || "user";
     const user = saveLoginFinal(email, role);
+    const isSignupPage = window.location.pathname.toLowerCase().includes("signup");
+    if (isSignupPage) {
+      showToast?.("Account created successfully!");
+      setTimeout(() => { window.location.href = "index.html"; }, 2000);
+      return;
+    }
     const targetPage = user.role === "admin" ? "admin-dashboard.html" : "user-dashboard.html";
     const query = new URLSearchParams({ email: user.email, name: user.name, role: user.role, t: String(Date.now()) }).toString();
     showToast?.("Login successful. Opening your dashboard...");

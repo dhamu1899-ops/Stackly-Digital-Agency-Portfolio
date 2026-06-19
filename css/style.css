@@ -5027,3 +5027,47 @@ body.admin-dashboard-body {
   font-weight: 800 !important;
   text-shadow: 0 1px 2px rgba(0,0,0,.28);
 }
+
+/* Final fix: keep hero stats above character image so 24/7 is fully visible */
+.hero .stats-row {
+  position: relative !important;
+  z-index: 12 !important;
+}
+
+.hero .stat {
+  position: relative !important;
+  z-index: 13 !important;
+}
+
+.hero .stat strong,
+.hero .stat span {
+  position: relative !important;
+  z-index: 14 !important;
+}
+
+.hero .hero-character {
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+
+.hero .watermark {
+  z-index: 0 !important;
+}
+
+.hero .hero-title,
+.hero .hero-copy,
+.hero .hero-actions {
+  z-index: 15 !important;
+}
+
+@media (min-width: 992px) {
+  .hero .stats-row {
+    padding-right: 24px !important;
+  }
+  .hero .stat:last-child {
+    background: rgba(17, 16, 16, 0.44) !important;
+    border-radius: 18px !important;
+    padding: 10px 12px !important;
+    backdrop-filter: blur(2px) !important;
+  }
+}
